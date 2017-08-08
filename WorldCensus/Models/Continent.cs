@@ -9,6 +9,6 @@ namespace WorldCensus.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<Country> Countries { get; set; }
+        
     }
 }
