@@ -161,6 +161,10 @@
     <Compile Include="Migrations\201708072144406_InitialCreate1.Designer.cs">
       <DependentUpon>201708072144406_InitialCreate1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708152005118_Country_Update.cs" />
+    <Compile Include="Migrations\201708152005118_Country_Update.Designer.cs">
+      <DependentUpon>201708152005118_Country_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Continent.cs" />
     <Compile Include="Models\Country.cs" />
@@ -228,6 +232,7 @@
     <Content Include="WorldMap_API\tests\assets\jquery-1.8.2.js" />
     <Content Include="WorldMap_API\tests\assets\jquery-jvectormap-data-us-lcc-en.js" />
     <Content Include="WorldMap_API\tests\assets\jquery-jvectormap-map.js" />
+    <Content Include="WorldMap_API\tests\assets\jquery-jvectormap-north_america-mill.js" />
     <Content Include="WorldMap_API\tests\assets\jquery-jvectormap-us-aea-en.js" />
     <Content Include="WorldMap_API\tests\assets\jquery-jvectormap-us-lcc-en.js" />
     <Content Include="WorldMap_API\tests\assets\jquery-jvectormap-us-merc-en.js" />
@@ -365,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708072144406_InitialCreate1.resx">
       <DependentUpon>201708072144406_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708152005118_Country_Update.resx">
+      <DependentUpon>201708152005118_Country_Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
