@@ -16,13 +16,51 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Word Census", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Download", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("About Us", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Sources", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Choose Map
+                            <span class="caret"></span>
+                        </a>
+                        <!--
+                            <form class="dropdown-menu">
+                                <input type="radio" name="datatype" value="population"> Population<br>
+                                <input type="radio" name="datatype" value="area"> Area<br>
+                                <input type="radio" name="datatype" value="medianage"> Median Age<hr>
+                                <input type="radio" name="map" value="africa"> Africa<br />
+                                <input type="radio" name="map" value="asia"> Asia<br />
+                                <input type="radio" name="map" value="australia"> Australia / Oceania<br />
+                                <input type="radio" name="map" value="europe"> Europe<br />
+                                <input type="radio" name="map" value="north_america"> North America<br />
+                                <input type="radio" name="map" value="south_america"> South America<br />
+                                <input type="submit" value="submit" />
+
+                            </form>
+                        -->
+                        @using (Html.BeginForm("GetMap", "Home", FormMethod.Post, new { id = "maptype", @class = "dropdown-menu" }))
+                            {
+                                
+                                @Html.RadioButton("datatype", "population")<label>Population</label><br />
+                                @Html.RadioButton("datatype", "area")<label>Area</label><br />
+                                @Html.RadioButton("datatype", "medianage")<label>Median Age</label><br />
+                                <hr />
+                                @Html.RadioButton("map", "africa")<label>Africa</label><br />
+                                @Html.RadioButton("map", "asia")<label>Asia</label><br />
+                                @Html.RadioButton("map", "australia")<label>Australia/Oceania</label><br />
+                                @Html.RadioButton("map", "europe")<label>Europe</label><br />
+                                @Html.RadioButton("map", "north_america")<label>North America</label><br />
+                                @Html.RadioButton("map", "south_america")<label>South America</label><br />
+                                <input type="submit" value="submit" />
+                        }
+                    </li>
                 </ul>
             </div>
         </div>
@@ -30,13 +68,15 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+    <div class="left-section">
+        @RenderSection("data", required: true);
+    </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootstrap") 
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,11 +1,12 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "../Shared/_Layout.cshtml";
 }
 
 
 
-<head>
-    <title>jVectorMap demo</title>
+
+
     <link rel="stylesheet" media="all" href="../../WorldMap_API/jquery-jvectormap.css" />
     <script src="../../WorldMap_API/tests/assets/jquery-1.8.2.js"></script>
     <script src="../../WorldMap_API/jquery-jvectormap.js"></script>
@@ -41,7 +42,7 @@
     <script src="../../WorldMap_API/src/data-series.js"></script>
     <script src="../../WorldMap_API/src/proj.js"></script>
     <script src="../../WorldMap_API/src/map.js"></script>
-    <script src="../../WorldMap_API/tests/assets/jquery-jvectormap-north_america-mill.js"></script>
+    <script src="../../WorldMap_API/tests/assets/jquery-jvectormap-world-mill-en.js"></script>
     <script>
     jQuery.noConflict();
     jQuery(function(){
@@ -60,7 +61,7 @@
         $('#map1').vectorMap('set', 'focus', {scale: 1, x: 0.5, y: 0.5, animate: true});
       });
       $('#map1').vectorMap({
-          map: 'north_america_mill',
+          map: 'world_mill_en',
         panOnDrag: true,
         focusOn: {
           x: 0.5,
@@ -83,12 +84,29 @@
       });
     })
     </script>
-</head>
-<body>
+
+
     <!-- <div style="height: 400px"></div> -->
-    <div id="map1" style="width: 1920px; height: 1080px"></div>
+    <div id="map1" style="width: 800px; height: 600px"></div>
     <button id="focus-single">Focus on Australia</button>
     <button id="focus-multiple">Focus on Australia and Japan</button>
     <button id="focus-coords">Focus on Cyprus</button>
     <button id="focus-init">Return to the initial state</button>
-</body>
+
+@section data{
+    <table style+"width:100%">
+        <tr>
+            <th>Country</th>
+            <th>Population</th>
+        </tr>
+        @foreach (var i in Model)
+            {
+            <tr>
+                <td>@i.Name</td>
+                <td>@i.Population</td>
+            </tr>
+    
+        }
+    </table>
+
+    }

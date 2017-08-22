@@ -15,7 +15,6 @@ namespace WorldCensus.Controllers
         public ActionResult Index()
         {
             var popQuery = from country in db.Countries
-                           where country.Continent.ID == 1 
                            select country;
 
             /* foreach(var pop in popQuery)
@@ -36,6 +35,13 @@ namespace WorldCensus.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetMap(FormCollection collection)
+        {
 
             return View();
         }
