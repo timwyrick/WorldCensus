@@ -29,9 +29,7 @@ namespace WorldCensus.Controllers
 
         public ActionResult Africa()
         {
-            IQueryable list = GetData("Africa", "population");
-
-            return View(list);
+            return View();
         }
 
         public ActionResult Asia()
@@ -41,9 +39,7 @@ namespace WorldCensus.Controllers
 
         public ActionResult Europe()
         {
-            IQueryable list = GetData("Europe", "population");
-
-            return View(list);
+            return View();
         }
 
         public ActionResult Oceania()
@@ -95,7 +91,7 @@ namespace WorldCensus.Controllers
             //If the form has not been submitted, default to returning index.html
             if (!collection.AllKeys.Contains("map"))
             {
-                var data = GetData("world", "population");
+                IQueryable data = GetData("world", "population");
                 return View("Index");
             }
             
@@ -104,13 +100,13 @@ namespace WorldCensus.Controllers
                 //If the form does not have a data type submitted, default to population
                 if(!collection.AllKeys.Contains("dataype"))
                 {
-                    var data = GetData(collection["map"], "population");
-                    return View(collection["map"], data);
+                    IQueryable data = GetData(collection["map"], "population");
+                    return View(collection["map"].Replace(" ",string.Empty), data);
                 }
                 else
                 {
-                    var data = GetData(collection["map"], collection["datatype"]);
-                    return View(collection["map"], data);
+                    IQueryable data = GetData(collection["map"], collection["datatype"]);
+                    return View(collection["map"].Replace(" ", string.Empty), data);
                 }
             }
         }

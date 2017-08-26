@@ -1,0 +1,18 @@
+﻿body {
+}
+
+.left-section{
+    width: 28%;
+    margin-left1%;
+    margin-right: 1%;
+    float: right;
+    height: 600px;
+    overflow-y: scroll;
+}
+#map1{
+    width: 70%;
+    height: 600px;
+    float: left;
+}
+
+
