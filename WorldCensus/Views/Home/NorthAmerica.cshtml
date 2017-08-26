@@ -1,0 +1,113 @@
+﻿
+
+@{
+    ViewBag.Title = "Africa";
+}
+
+
+<link rel="stylesheet" media="all" href="../../WorldMap_API/jquery-jvectormap.css" />
+<script src="../../WorldMap_API/tests/assets/jquery-1.8.2.js"></script>
+<script src="../../WorldMap_API/jquery-jvectormap.js"></script>
+<script src="../../WorldMap_API/lib/jquery-mousewheel.js"></script>
+<script src="../../WorldMap_API/src/jvectormap.js"></script>
+<script src="../../WorldMap_API/src/abstract-element.js"></script>
+<script src="../../WorldMap_API/src/abstract-canvas-element.js"></script>
+<script src="../../WorldMap_API/src/abstract-shape-element.js"></script>
+<script src="../../WorldMap_API/src/svg-element.js"></script>
+<script src="../../WorldMap_API/src/svg-group-element.js"></script>
+<script src="../../WorldMap_API/src/svg-canvas-element.js"></script>
+<script src="../../WorldMap_API/src/svg-shape-element.js"></script>
+<script src="../../WorldMap_API/src/svg-path-element.js"></script>
+<script src="../../WorldMap_API/src/svg-circle-element.js"></script>
+<script src="../../WorldMap_API/src/svg-image-element.js"></script>
+<script src="../../WorldMap_API/src/svg-text-element.js"></script>
+<script src="../../WorldMap_API/src/vml-element.js"></script>
+<script src="../../WorldMap_API/src/vml-group-element.js"></script>
+<script src="../../WorldMap_API/src/vml-canvas-element.js"></script>
+<script src="../../WorldMap_API/src/vml-shape-element.js"></script>
+<script src="../../WorldMap_API/src/vml-path-element.js"></script>
+<script src="../../WorldMap_API/src/vml-circle-element.js"></script>
+<script src="../../WorldMap_API/src/vml-image-element.js"></script>
+<script src="../../WorldMap_API/src/map-object.js"></script>
+<script src="../../WorldMap_API/src/region.js"></script>
+<script src="../../WorldMap_API/src/marker.js"></script>
+<script src="../../WorldMap_API/src/vector-canvas.js"></script>
+<script src="../../WorldMap_API/src/simple-scale.js"></script>
+<script src="../../WorldMap_API/src/ordinal-scale.js"></script>
+<script src="../../WorldMap_API/src/numeric-scale.js"></script>
+<script src="../../WorldMap_API/src/color-scale.js"></script>
+<script src="../../WorldMap_API/src/legend.js"></script>
+<script src="../../WorldMap_API/src/data-series.js"></script>
+<script src="../../WorldMap_API/src/proj.js"></script>
+<script src="../../WorldMap_API/src/map.js"></script>
+<script src="../../WorldMap_API/tests/assets/jquery-jvectormap-north_america-mill.js"></script>
+<script>
+    jQuery.noConflict();
+    jQuery(function(){
+      var $ = jQuery;
+
+      $('#focus-single').click(function(){
+        $('#map1').vectorMap('set', 'focus', {region: 'AU', animate: true});
+      });
+      $('#focus-multiple').click(function(){
+        $('#map1').vectorMap('set', 'focus', {regions: ['AU', 'JP'], animate: true});
+      });
+      $('#focus-coords').click(function(){
+        $('#map1').vectorMap('set', 'focus', {scale: 7, lat: 35, lng: 33, animate: true});
+      });
+      $('#focus-init').click(function(){
+        $('#map1').vectorMap('set', 'focus', {scale: 1, x: 0.5, y: 0.5, animate: true});
+      });
+      $('#map1').vectorMap({
+          map: 'north_america_mill',
+        panOnDrag: true,
+        focusOn: {
+          x: 0.5,
+          y: 0.5,
+          scale: 2,
+          animate: true
+        },
+        series: {
+          regions: [{
+              scale: ['#00ff00', '#ff0000'],
+            normalizeFunction: 'linear',
+            values: {
+                @foreach (var b in Model)
+                {
+                 <text>"@(b.Code)":@b.Population,</text>
+                }
+            }
+          }]
+        }
+      });
+    })
+</script>
+
+
+<!-- <div style="height: 400px"></div> -->
+<div id="map1" style="width: 800px; height: 600px"></div>
+<button id="focus-single">Focus on Australia</button>
+<button id="focus-multiple">Focus on Australia and Japan</button>
+<button id="focus-coords">Focus on Cyprus</button>
+<button id="focus-init">Return to the initial state</button>
+
+@section data{
+    <table style+"width:100%">
+        <tr>
+            <th>Country</th>
+            <th>Population</th>
+        </tr>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.Name</td>
+                <td>@i.Population</td>
+            </tr>
+
+        }
+    </table>
+
+}
+
+
+

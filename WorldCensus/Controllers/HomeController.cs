@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WorldCensus.Models;
+using WorldCensus.ViewModels;
 
 namespace WorldCensus.Controllers
 {
@@ -15,8 +16,8 @@ namespace WorldCensus.Controllers
 
         public ActionResult Index()
         {
-            var popQuery = from country in db.Countries
-                           select country;
+            var popQuery = (from country in db.Countries
+                            select country);
 
             /* foreach(var pop in popQuery)
             {
@@ -24,6 +25,45 @@ namespace WorldCensus.Controllers
             } */
 
             return View(popQuery);
+        }
+
+        public ActionResult Africa()
+        {
+            IQueryable list = GetData("Africa", "population");
+
+            return View(list);
+        }
+
+        public ActionResult Asia()
+        {
+            return View();
+        }
+
+        public ActionResult Europe()
+        {
+            IQueryable list = GetData("Europe", "population");
+
+            return View(list);
+        }
+
+        public ActionResult Oceania()
+        {
+            return View();
+        }
+
+        public ActionResult NorthAmerica()
+        {
+            return View();
+        }
+
+        public ActionResult SouthAmerica()
+        {
+            return View();
+        }
+
+        public ActionResult World()
+        {
+            return View();
         }
 
         public ActionResult About()
@@ -74,6 +114,8 @@ namespace WorldCensus.Controllers
                 }
             }
         }
+
+
         /**
          * Takes the datatype passed in from the webpage's navbar form and returns the data associated
          * with the datatype.
@@ -101,50 +143,60 @@ namespace WorldCensus.Controllers
                              select continents.ID;
             }
 
+            //List<string,string,int> getData;
+
+            /*var getData = Enumerable.Empty<object>()
+             .Select(b => new { Name = "", Code= "", Population =  0}) // prototype of anonymous type
+             .ToList(); */
+
             IQueryable getData;
             switch (datatype)
             {
                 case "population":
-                        getData = from country in db.Countries
+                       getData = (from country in db.Countries
                                   where getMap.Contains(country.Continent.ID) //country.Continent.ID == getMap.First()
-                                  select new
+                                  select new PopulationViewModel()
                                   {
-                                      country.Name,
-                                      country.Population
-                                  };        
+                                      Name = country.Name,
+                                      Code = country.Code,
+                                      Population = country.Population
+                                  });        
                     break;
 
                 case "area":
 
-                    getData = from country in db.Countries
+                    getData = (from country in db.Countries
                               where getMap.Contains(country.Continent.ID)
-                              select new
+                              select new Country()
                               {
-                                  country.Name,
-                                  country.Population
-                              };
+                                  Name = country.Name,
+                                  Code = country.Code,
+                                  Population = country.Population
+                              });
                     break;
 
                 case "medianage":
 
-                    getData = from country in db.Countries
+                    getData = (from country in db.Countries
                               where getMap.Contains(country.Continent.ID)
-                              select new
+                              select new Country()
                               {
-                                  country.Name,
-                                  country.Population
-                              };
+                                  Name = country.Name,
+                                  Code = country.Code,
+                                  Population = country.Population
+                              });
                     break;
 
                 default:
 
-                    getData = from country in db.Countries
+                    getData = (from country in db.Countries
                               where getMap.Contains(country.Continent.ID)
-                              select new
+                              select new Country()
                               {
-                                  country.Name,
-                                  country.Population
-                              };
+                                  Name = country.Name,
+                                  Code = country.Code,
+                                  Population = country.Population
+                              });
                     break;
             }
 
