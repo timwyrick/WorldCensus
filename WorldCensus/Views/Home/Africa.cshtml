@@ -73,11 +73,25 @@
             values: {
                 @foreach (var b in Model)
                 {
-                 <text>"@(b.Code)":@b.Population,</text>
+                 <text>"@(b.Code)":@b.Data,</text>
                 }
             }
           }]
-        }
+        },
+        onRegionTipShow: function (event, label, code) {
+
+            var contName = '#' + code;
+            var attrName = $("#attr_name").text();
+
+            console.log(contName);
+
+            var dataValue = $(contName).text();
+
+            console.log(dataValue);
+
+            label.html(label.html() + ' (' + code.toString() +
+                ') <br /> ' + attrName + ': ' + dataValue);
+        },
       });
     })
 </script>
@@ -90,13 +104,13 @@
     <table style="width:100%">
         <tr>
             <th>Country</th>
-            <th>Population</th>
+            <th id="attr_name">Population</th>
         </tr>
         @foreach (var i in Model)
         {
             <tr>
                 <td>@i.Name</td>
-                <td>@i.Population</td>
+                <td id="@i.Code">@i.Data</td>
             </tr>
 
         }

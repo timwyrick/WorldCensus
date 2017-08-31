@@ -155,7 +155,7 @@ namespace WorldCensus.Controllers
                                   {
                                       Name = country.Name,
                                       Code = country.Code,
-                                      Population = country.Population
+                                      Data = country.Population
                                   });        
                     break;
 
@@ -163,11 +163,11 @@ namespace WorldCensus.Controllers
 
                     getData = (from country in db.Countries
                               where getMap.Contains(country.Continent.ID)
-                              select new Country()
+                              select new PopulationViewModel()
                               {
                                   Name = country.Name,
                                   Code = country.Code,
-                                  Population = country.Population
+                                  Data = country.Population
                               });
                     break;
 
@@ -175,11 +175,11 @@ namespace WorldCensus.Controllers
 
                     getData = (from country in db.Countries
                               where getMap.Contains(country.Continent.ID)
-                              select new Country()
+                              select new PopulationViewModel()
                               {
                                   Name = country.Name,
                                   Code = country.Code,
-                                  Population = country.Population
+                                  Data = country.Population
                               });
                     break;
 
@@ -187,11 +187,11 @@ namespace WorldCensus.Controllers
 
                     getData = (from country in db.Countries
                               where getMap.Contains(country.Continent.ID)
-                              select new Country()
+                              select new PopulationViewModel()
                               {
                                   Name = country.Name,
                                   Code = country.Code,
-                                  Population = country.Population
+                                  Data = country.Population
                               });
                     break;
             }
