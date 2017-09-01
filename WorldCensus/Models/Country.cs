@@ -12,6 +12,9 @@ namespace WorldCensus.Models
         public string Code { get; set; }
         public Continent Continent { get; set; }
         public int Population { get; set; }
+        public double? LifeExpectancy { get; set; }
+        public double? TotalArea { get; set; }
+        public double? GDP { get; set; }
         public int FoundedDate { get; set; }
         public int EndDdate { get; set; }
     }

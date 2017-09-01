@@ -72,7 +72,7 @@
             values: {
                 @foreach (var b in Model)
                 {
-                 <text>"@(b.Code)":@b.Population,</text>
+                 <text>"@(b.Code)":@b.Data,</text>
                 }
             }
           }]
@@ -109,7 +109,7 @@
             {
             <tr>
                 <td>@i.Name</td>
-                <td id="@i.Code">@i.Population</td>
+                <td id="@i.Code">@i.Data</td>
             </tr>
     
         }

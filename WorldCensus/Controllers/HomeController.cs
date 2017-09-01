@@ -16,15 +16,18 @@ namespace WorldCensus.Controllers
 
         public ActionResult Index()
         {
-            var popQuery = (from country in db.Countries
+            /*var popQuery = (from country in db.Countries
                             select country);
+
+            */
+            var query = GetData("world", "population");
 
             /* foreach(var pop in popQuery)
             {
                 Debug.WriteLine(pop.Population);
             } */
 
-            return View(popQuery);
+            return View(query);
         }
 
         public ActionResult Africa()
@@ -91,14 +94,15 @@ namespace WorldCensus.Controllers
             //If the form has not been submitted, default to returning index.html
             if (!collection.AllKeys.Contains("map"))
             {
-                IQueryable data = GetData("world", "population");
-                return View("Index");
+                //FIX THIS LATER
+                IQueryable data = GetData("world", collection["datatype"]);
+                return View("Index", data);
             }
             
             else
             {
                 //If the form does not have a data type submitted, default to population
-                if(!collection.AllKeys.Contains("dataype"))
+                if(!collection.AllKeys.Contains("datatype"))
                 {
                     IQueryable data = GetData(collection["map"], "population");
                     return View(collection["map"].Replace(" ",string.Empty), data);
@@ -151,7 +155,7 @@ namespace WorldCensus.Controllers
                 case "population":
                        getData = (from country in db.Countries
                                   where getMap.Contains(country.Continent.ID) //country.Continent.ID == getMap.First()
-                                  select new PopulationViewModel()
+                                  select new SingleDataViewModel()
                                   {
                                       Name = country.Name,
                                       Code = country.Code,
@@ -159,35 +163,46 @@ namespace WorldCensus.Controllers
                                   });        
                     break;
 
-                case "area":
+                case "totalarea":
 
                     getData = (from country in db.Countries
                               where getMap.Contains(country.Continent.ID)
-                              select new PopulationViewModel()
+                              select new SingleDataViewModel()
                               {
                                   Name = country.Name,
                                   Code = country.Code,
-                                  Data = country.Population
+                                  Data = country.TotalArea
                               });
                     break;
 
-                case "medianage":
+                case "lifeexpectancy":
 
                     getData = (from country in db.Countries
                               where getMap.Contains(country.Continent.ID)
-                              select new PopulationViewModel()
+                              select new SingleDataViewModel()
                               {
                                   Name = country.Name,
                                   Code = country.Code,
-                                  Data = country.Population
+                                  Data = country.LifeExpectancy
                               });
                     break;
 
+                case "gdp":
+
+                    getData = (from country in db.Countries
+                               where getMap.Contains(country.Continent.ID)
+                               select new SingleDataViewModel()
+                               {
+                                   Name = country.Name,
+                                   Code = country.Code,
+                                   Data = country.GDP
+                               });
+                    break;
                 default:
 
                     getData = (from country in db.Countries
                               where getMap.Contains(country.Continent.ID)
-                              select new PopulationViewModel()
+                              select new SingleDataViewModel()
                               {
                                   Name = country.Name,
                                   Code = country.Code,

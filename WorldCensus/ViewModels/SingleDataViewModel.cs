@@ -5,10 +5,10 @@ using System.Web;
 
 namespace WorldCensus.ViewModels
 {
-    public class PopulationViewModel
+    public class SingleDataViewModel
     {
         public string Name { get; set; }
         public string Code { get; set; }
-        public int Data { get; set; }
+        public double? Data { get; set; }
     }
 }
