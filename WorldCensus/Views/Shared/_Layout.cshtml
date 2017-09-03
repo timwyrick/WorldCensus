@@ -48,11 +48,11 @@
                         -->
                         @using (Html.BeginForm("GetMap", "Home", FormMethod.Post, new { id = "maptype", @class = "dropdown-menu" }))
                             {
-                                
-                                @Html.RadioButton("datatype", "population")<label>Population</label><br />
-                                @Html.RadioButton("datatype", "lifeexpectancy")<label>Life Expectancy</label><br />
-                                @Html.RadioButton("datatype", "totalarea")<label>Total Area</label><br />
-                                @Html.RadioButton("datatype", "gdp")<label>Median Age</label><br />
+                                <div id="form-container">   
+                                @Html.RadioButton("datatype", "Population")<label>Population</label><br />
+                                @Html.RadioButton("datatype", "Life Expectancy")<label>Life Expectancy</label><br />
+                                @Html.RadioButton("datatype", "Total Area")<label>Total Area</label><br />
+                                @Html.RadioButton("datatype", "Gross Domestic Product (GDP)")<label>Gross Domestic Product</label><br />
                                 <hr />
                                 @Html.RadioButton("map", "Africa")<label>Africa</label><br />
                                 @Html.RadioButton("map", "Asia")<label>Asia</label><br />
@@ -60,7 +60,8 @@
                                 @Html.RadioButton("map", "Europe")<label>Europe</label><br />
                                 @Html.RadioButton("map", "North America")<label>North America</label><br />
                                 @Html.RadioButton("map", "South America")<label>South America</label><br />
-                                <input type="submit" value="submit" />
+                                <input type="submit" value="submit" style="width: 180px" />
+                                </div>
                         }
                     </li>
                 </ul>
@@ -70,15 +71,10 @@
     <div class="container body-content">
         @RenderBody()
         <div class="left-section">
-            @RenderSection("data", required: true);
+            @RenderSection("data", required: false);
         </div>
         @RenderSection("guidebuttons", required: false);
     </div>
-
-
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
 
     @Scripts.Render("~/bundles/bootstrap") 
     @RenderSection("scripts", required: false)

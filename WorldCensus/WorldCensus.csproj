@@ -314,6 +314,7 @@
     <Content Include="Views\Home\NorthAmerica.cshtml" />
     <Content Include="Views\Home\Oceania.cshtml" />
     <Content Include="Views\Home\SouthAmerica.cshtml" />
+    <Content Include="Views\Home\Modal.cshtml" />
     <None Include="Views\Home\World.cshtml" />
     <Content Include="WorldMap_API\tests\basic2.html" />
     <Content Include="WorldMap_API\tests\build.html" />

@@ -21,6 +21,7 @@ namespace WorldCensus.Controllers
 
             */
             var query = GetData("world", "population");
+            ViewBag.DataType = "Population";
 
             /* foreach(var pop in popQuery)
             {
@@ -79,6 +80,12 @@ namespace WorldCensus.Controllers
             return View();
         }
 
+        public ActionResult Modal(string dataname)
+        {
+            ViewBag.Country = dataname;
+            return PartialView();
+        }
+
 
         /**
          * This function takes in form data from the above navbar to determine which view should be
@@ -94,7 +101,8 @@ namespace WorldCensus.Controllers
             //If the form has not been submitted, default to returning index.html
             if (!collection.AllKeys.Contains("map"))
             {
-                //FIX THIS LATER
+                //FIX THIS LATER (Needs to have a preselected value in form to prevent messy bugs
+                ViewBag.DataType = collection["datatype"];
                 IQueryable data = GetData("world", collection["datatype"]);
                 return View("Index", data);
             }
@@ -104,11 +112,13 @@ namespace WorldCensus.Controllers
                 //If the form does not have a data type submitted, default to population
                 if(!collection.AllKeys.Contains("datatype"))
                 {
+                    ViewBag.DataType = "Population";
                     IQueryable data = GetData(collection["map"], "population");
                     return View(collection["map"].Replace(" ",string.Empty), data);
                 }
                 else
                 {
+                    ViewBag.DataType = collection["datatype"];
                     IQueryable data = GetData(collection["map"], collection["datatype"]);
                     return View(collection["map"].Replace(" ", string.Empty), data);
                 }
@@ -152,7 +162,7 @@ namespace WorldCensus.Controllers
             IQueryable getData;
             switch (datatype)
             {
-                case "population":
+                case "Population":
                        getData = (from country in db.Countries
                                   where getMap.Contains(country.Continent.ID) //country.Continent.ID == getMap.First()
                                   select new SingleDataViewModel()
@@ -163,7 +173,7 @@ namespace WorldCensus.Controllers
                                   });        
                     break;
 
-                case "totalarea":
+                case "Total Area":
 
                     getData = (from country in db.Countries
                               where getMap.Contains(country.Continent.ID)
@@ -175,7 +185,7 @@ namespace WorldCensus.Controllers
                               });
                     break;
 
-                case "lifeexpectancy":
+                case "Life Expectancy":
 
                     getData = (from country in db.Countries
                               where getMap.Contains(country.Continent.ID)
@@ -187,7 +197,7 @@ namespace WorldCensus.Controllers
                               });
                     break;
 
-                case "gdp":
+                case "Gross Domestic Product (GDP)":
 
                     getData = (from country in db.Countries
                                where getMap.Contains(country.Continent.ID)

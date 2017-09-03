@@ -73,7 +73,11 @@
             values: {
                 @foreach (var b in Model)
                 {
-                 <text>"@(b.Code)":@b.Data,</text>
+                    if(b.Data != null)
+                    {
+                        <text>"@(b.Code)":@b.Data,</text>
+                    }
+
                 }
             }
           }]
@@ -104,13 +108,20 @@
     <table style="width:100%">
         <tr>
             <th>Country</th>
-            <th id="attr_name">Population</th>
+            <th id="attr_name">@ViewBag.DataType</th>
         </tr>
         @foreach (var i in Model)
         {
             <tr>
                 <td>@i.Name</td>
-                <td id="@i.Code">@i.Data</td>
+                @if (i.Data != null)
+                {
+                    <td id="@i.Code">@i.Data</td>
+                }
+                else
+                {
+                    <td id="@i.Code">n/a</td>
+                }
             </tr>
 
         }

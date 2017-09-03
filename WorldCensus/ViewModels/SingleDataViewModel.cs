@@ -10,5 +10,6 @@ namespace WorldCensus.ViewModels
         public string Name { get; set; }
         public string Code { get; set; }
         public double? Data { get; set; }
+        public string DataName { get; set; }
     }
 }

@@ -42,7 +42,41 @@
     <script>
     jQuery.noConflict();
     jQuery(function(){
-      var $ = jQuery;
+        var $ = jQuery;
+
+        var TeamDetailPostBackURL = '/Home/Modal';  
+        $(function () {
+            $(".sillyclass").click(function () {
+                // debugger;
+                var $buttonClicked = $(this);
+                //var id = $buttonClicked.attr('data-id');
+               // var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: TeamDetailPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                   // data: { "Id": id },
+                    //datatype: "json",
+                    //modal: true,
+                    success: function (data) {
+                       //  debugger;
+                        $('#myModalContent').html(data);
+                       // $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            });
+            //$("#closebtn").on('click',function(){  
+            //    $('#myModal').modal('hide');    
+
+            $("#closbtn").click(function () {
+                $('#myModal').modal('hide');
+            });
+        });
 
       $('#focus-single').click(function(){
         $('#map1').vectorMap('set', 'focus', {region: 'AU', animate: true});
@@ -72,7 +106,11 @@
             values: {
                 @foreach (var b in Model)
                 {
-                 <text>"@(b.Code)":@b.Data,</text>
+                    if(b.Data != null)
+                    {
+                        <text>"@(b.Code)":@b.Data,</text>
+                    }
+
                 }
             }
           }]
@@ -82,34 +120,74 @@
             var contName = '#' + code;
             var attrName = $("#attr_name").text();
 
-            console.log(contName);
-
             var dataValue = $(contName).text();
-
-            console.log(dataValue);
 
             label.html(label.html() + ' (' + code.toString() +
                 ') <br /> ' + attrName + ': ' + dataValue);
         },
+        onRegionClick: function (event, code) {
+            console.log("This works!");
+
+            var regName = code;
+            console.log(regName);
+
+            $.ajax({
+                type: "GET",
+                url: "/Home/Modal",
+                contentType: "application/json; charset=utf-8",
+                // data: { "Id": id },
+                //datatype: "json",
+                //modal: true,
+                data: {'dataname': code},
+                success: function (data) {
+                    //  debugger;
+                    $('#myModalContent').html(data);
+                    // $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+
+                },
+                error: function () {
+                    alert("Dynamic content load failed.");
+                }
+            });
+        },
       });
     })
     </script>
-
-
+<div>This is a div</div>
+<div><a class="sillyclass">Hello Partial</a></div>
     <!-- <div style="height: 400px"></div> -->
     <div id="map1"></div>
+
+
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+
+</div>   
     
 @section data{
     <table style="width:100%">
         <tr>
             <th>Country</th>
-            <th id="attr_name">Population</th>
+            <th id="attr_name">@ViewBag.DataType</th>
         </tr>
         @foreach (var i in Model)
             {
             <tr>
                 <td>@i.Name</td>
+                @if(i.Data != null)
+                {
                 <td id="@i.Code">@i.Data</td>
+                }
+                else
+                {
+                    <td id="@i.Code">n/a</td>
+                }
+
             </tr>
     
         }
@@ -123,3 +201,5 @@
     <button id="focus-coords">Focus on Cyprus</button>
     <button id="focus-init">Return to the initial state</button>
     }
+
+
