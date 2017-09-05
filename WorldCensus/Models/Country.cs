@@ -15,7 +15,11 @@ namespace WorldCensus.Models
         public double? LifeExpectancy { get; set; }
         public double? TotalArea { get; set; }
         public double? GDP { get; set; }
+        public string Synopsis { get; set; }
+        public string FilePath1 { get; set; }
+        public string FilePath2 { get; set; }
+        public string FilePath3 { get; set; }
         public int FoundedDate { get; set; }
-        public int EndDdate { get; set; }
+        public int EndDate { get; set; }
     }
 }

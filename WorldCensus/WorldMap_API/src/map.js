@@ -1082,6 +1082,8 @@ jvm.Map.prototype = {
     }
   },
 
+
+
   /**
    * Gracefully remove the map and and all its accessories, unbind event handlers.
    */

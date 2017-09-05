@@ -15,9 +15,24 @@ namespace WorldCensus.Controllers
         private WorldCensusContext db = new WorldCensusContext();
 
         // GET: Countries
-        public ActionResult Index()
+        public ActionResult Index(string dataname)
         {
-            return View(db.Countries.ToList());
+           ViewBag.Country = dataname;
+
+            Country getCountry = (from country in db.Countries
+                             where country.Code == dataname
+                             select country).SingleOrDefault();
+
+            return PartialView(getCountry);
+        }
+
+        public ActionResult Modal(string dataname)
+        {
+            var getCountry = from country in db.Countries
+                             where country.Code == dataname
+                             select country;
+                             
+            return PartialView(getCountry);
         }
 
         // GET: Countries/Details/5

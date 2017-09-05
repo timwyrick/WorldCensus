@@ -1,51 +1,57 @@
-﻿@model IEnumerable<WorldCensus.Models.Country>
+﻿@model WorldCensus.Models.Country
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_CountryLayout.cshtml";
 }
 
-<h2>Index</h2>
+@section photos {
+    <img src="~/Assets/@Html.DisplayFor(Model => Model.FilePath1)" class="img-responsive" alt="Map of Country"/>
+    
+    
+    <img src="~/Assets/@Html.DisplayFor(Model => Model.FilePath2)" class="img-responsive" alt="Country Captial" />
+    
+    
+    <img src="~/Assets/@Html.DisplayFor(Model => Model.FilePath3)" class="img-responsive" alt="Major City or Landmark" />
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Population)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FoundedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDdate)
-        </th>
-        <th></th>
-    </tr>
+@section countryData {
+    <h2>@Model.Name</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Population)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FoundedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDdate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+    <table>
+        <tr>
+            <td>
+                Population
+            </td>
+            <td>
+                @Model.Population
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total Area
+            </td>
+            <td>
+                @Model.TotalArea
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Life Expectancy
+            </td>
+            <td>
+                @Model.LifeExpectancy
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Gross Domestic Product
+            </td>
+            <td>
+                @Model.GDP
+            </td>
+        </tr>
+    </table>
+    
+    <p>@Model.Synopsis</p>
+    }

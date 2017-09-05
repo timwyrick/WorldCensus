@@ -97,6 +97,30 @@
             label.html(label.html() + ' (' + code.toString() +
                 ') <br /> ' + attrName + ': ' + dataValue);
         },
+        onRegionClick: function (event, code) {
+
+            var regName = code;
+
+            $.ajax({
+                type: "GET",
+                url: "/Home/Modal",
+                contentType: "application/json; charset=utf-8",
+                // data: { "Id": id },
+                //datatype: "json",
+                //modal: true,
+                data: { 'dataname': code },
+                success: function (data) {
+                    //  debugger;
+                    $('#myModalContent').html(data);
+                    // $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+
+                },
+                error: function () {
+                    alert("Dynamic content load failed.");
+                }
+            });
+        },
       });
     })
 </script>
@@ -104,6 +128,15 @@
 
 <!-- <div style="height: 400px"></div> -->
 <div id="map1"></div>
+
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+
+</div>   
 
 @section data{
     <table style="width:100%">

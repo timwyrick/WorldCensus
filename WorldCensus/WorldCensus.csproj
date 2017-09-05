@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201709010112194_AreaAndGDP.Designer.cs">
       <DependentUpon>201709010112194_AreaAndGDP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709042358113_Country View.cs" />
+    <Compile Include="Migrations\201709042358113_Country View.Designer.cs">
+      <DependentUpon>201709042358113_Country View.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Continent.cs" />
     <Compile Include="Models\Country.cs" />
@@ -185,6 +189,9 @@
     <Compile Include="ViewModels\SingleDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\US-1.jpg" />
+    <Content Include="Assets\US-2.jpg" />
+    <Content Include="Assets\US-3.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom.css" />
@@ -197,6 +204,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Custom.js" />
     <Content Include="WorldMap_API\.gitignore" />
     <Content Include="WorldMap_API\converter\converter.py" />
     <Content Include="WorldMap_API\converter\processor.py" />
@@ -373,6 +381,7 @@
     <Content Include="WorldMap_API\tests\us.json" />
     <Content Include="WorldMap_API\tests\world.json" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_CountryLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -410,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709010112194_AreaAndGDP.resx">
       <DependentUpon>201709010112194_AreaAndGDP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709042358113_Country View.resx">
+      <DependentUpon>201709042358113_Country View.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

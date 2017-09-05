@@ -44,8 +44,8 @@
     jQuery(function(){
         var $ = jQuery;
 
-        var TeamDetailPostBackURL = '/Home/Modal';  
-        $(function () {
+        var TeamDetailPostBackURL = "/Countries/Index";  
+
             $(".sillyclass").click(function () {
                 // debugger;
                 var $buttonClicked = $(this);
@@ -69,7 +69,6 @@
                         alert("Dynamic content load failed.");
                     }
                 });
-            });
             //$("#closebtn").on('click',function(){  
             //    $('#myModal').modal('hide');    
 
@@ -125,20 +124,19 @@
             label.html(label.html() + ' (' + code.toString() +
                 ') <br /> ' + attrName + ': ' + dataValue);
         },
+
         onRegionClick: function (event, code) {
-            console.log("This works!");
 
             var regName = code;
-            console.log(regName);
 
             $.ajax({
                 type: "GET",
-                url: "/Home/Modal",
+                url: "/Countries/Index",
                 contentType: "application/json; charset=utf-8",
                 // data: { "Id": id },
                 //datatype: "json",
                 //modal: true,
-                data: {'dataname': code},
+                data: { 'dataname': code },
                 success: function (data) {
                     //  debugger;
                     $('#myModalContent').html(data);
