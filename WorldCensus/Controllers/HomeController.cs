@@ -14,58 +14,78 @@ namespace WorldCensus.Controllers
     {
         private WorldCensusContext db = new WorldCensusContext();
 
+        /**
+         * Index function. Defaults to showing the JSVector world map with the population data.
+         **/
         public ActionResult Index()
         {
-            /*var popQuery = (from country in db.Countries
-                            select country);
 
-            */
             var query = GetData("world", "population");
             ViewBag.DataType = "Population";
-
-            /* foreach(var pop in popQuery)
-            {
-                Debug.WriteLine(pop.Population);
-            } */
 
             return View(query);
         }
 
+        /**
+         * Displays Africa JSVectorMap
+         **/
         public ActionResult Africa()
         {
             return View();
         }
 
+        /**
+         * Displays Asia JSVectorMap
+         **/
         public ActionResult Asia()
         {
             return View();
         }
 
+        /**
+         * Displays Europe JSVectorMap
+         **/
         public ActionResult Europe()
         {
             return View();
         }
 
+        /**
+         * Displays Oceania JSVectorMap
+         **/
         public ActionResult Oceania()
         {
             return View();
         }
 
+        /**
+         * Displays North America JSVectorMap
+         **/
         public ActionResult NorthAmerica()
         {
             return View();
         }
 
+        /**
+         * Displays South America JSVectorMap
+         **/
         public ActionResult SouthAmerica()
         {
             return View();
         }
 
+        /**
+         * Displays World JSVectorMap. Currently unused.
+         **/
         public ActionResult World()
         {
             return View();
         }
 
+        /**
+         * The about page contains information about the site, its purpose, 
+         * and proper attribution to the sources which contributed the information and images.
+         **/
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -73,6 +93,9 @@ namespace WorldCensus.Controllers
             return View();
         }
 
+        /**
+         * Displays a personal contact page.
+         **/
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -138,7 +161,7 @@ namespace WorldCensus.Controllers
         public IQueryable GetData(string map, string datatype)
         {
 
-
+            //Determine which map to return first
             IQueryable<int> getMap;
 
             if(map == "world")
@@ -153,18 +176,13 @@ namespace WorldCensus.Controllers
                              select continents.ID;
             }
 
-            //List<string,string,int> getData;
-
-            /*var getData = Enumerable.Empty<object>()
-             .Select(b => new { Name = "", Code= "", Population =  0}) // prototype of anonymous type
-             .ToList(); */
-
+            //Get relevant country data according to map and data values
             IQueryable getData;
             switch (datatype)
             {
                 case "Population":
                        getData = (from country in db.Countries
-                                  where getMap.Contains(country.Continent.ID) //country.Continent.ID == getMap.First()
+                                  where getMap.Contains(country.Continent.ID)
                                   select new SingleDataViewModel()
                                   {
                                       Name = country.Name,

@@ -14,11 +14,17 @@ namespace WorldCensus.Controllers
     {
         private WorldCensusContext db = new WorldCensusContext();
 
-        // GET: Countries
+        /**
+         * Returns the index view containing all relevant data about the specific country in tabluar form,
+         * three photos of the country, and a short synopsis.
+         * 
+         * INPUTS: 
+         *  @param dataname: The country code passed in via the map ajax request.
+         **/
         public ActionResult Index(string dataname)
         {
            ViewBag.Country = dataname;
-
+            
             Country getCountry = (from country in db.Countries
                              where country.Code == dataname
                              select country).SingleOrDefault();
