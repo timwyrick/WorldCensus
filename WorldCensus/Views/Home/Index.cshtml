@@ -44,39 +44,6 @@
     jQuery(function(){
         var $ = jQuery;
 
-        var TeamDetailPostBackURL = "/Countries/Index";  
-
-            $(".sillyclass").click(function () {
-                // debugger;
-                var $buttonClicked = $(this);
-                //var id = $buttonClicked.attr('data-id');
-               // var options = { "backdrop": "static", keyboard: true };
-                $.ajax({
-                    type: "GET",
-                    url: TeamDetailPostBackURL,
-                    contentType: "application/json; charset=utf-8",
-                   // data: { "Id": id },
-                    //datatype: "json",
-                    //modal: true,
-                    success: function (data) {
-                       //  debugger;
-                        $('#myModalContent').html(data);
-                       // $('#myModal').modal(options);
-                        $('#myModal').modal('show');
-
-                    },
-                    error: function () {
-                        alert("Dynamic content load failed.");
-                    }
-                });
-            //$("#closebtn").on('click',function(){  
-            //    $('#myModal').modal('hide');    
-
-            $("#closbtn").click(function () {
-                $('#myModal').modal('hide');
-            });
-        });
-
       $('#focus-single').click(function(){
         $('#map1').vectorMap('set', 'focus', {region: 'AU', animate: true});
       });
@@ -133,16 +100,10 @@
                 type: "GET",
                 url: "/Countries/Index",
                 contentType: "application/json; charset=utf-8",
-                // data: { "Id": id },
-                //datatype: "json",
-                //modal: true,
                 data: { 'dataname': code },
                 success: function (data) {
-                    //  debugger;
                     $('#myModalContent').html(data);
-                    // $('#myModal').modal(options);
                     $('#myModal').modal('show');
-
                 },
                 error: function () {
                     alert("Dynamic content load failed.");
@@ -152,11 +113,8 @@
       });
     })
     </script>
-<div>This is a div</div>
-<div><a class="sillyclass">Hello Partial</a></div>
-    <!-- <div style="height: 400px"></div> -->
-    <div id="map1"></div>
 
+    <div id="map1"></div>
 
 <div id='myModal' class='modal'>
     <div class="modal-dialog">
@@ -193,11 +151,5 @@
 
     }
 
-@section guidebuttons{
-    <button id="focus-single">Focus on Australia</button>
-    <button id="focus-multiple">Focus on Australia and Japan</button>
-    <button id="focus-coords">Focus on Cyprus</button>
-    <button id="focus-init">Return to the initial state</button>
-    }
 
 

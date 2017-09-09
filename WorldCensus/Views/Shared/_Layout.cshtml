@@ -21,11 +21,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("basic", "basic", "Home")</li>
-                    <li>@Html.ActionLink("Download", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("About Us", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Sources", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Choose Map
@@ -49,17 +45,18 @@
                         @using (Html.BeginForm("GetMap", "Home", FormMethod.Post, new { id = "maptype", @class = "dropdown-menu" }))
                             {
                                 <div id="form-container">   
-                                @Html.RadioButton("datatype", "Population")<label>Population</label><br />
+                                @Html.RadioButton("datatype", "Population", new { required ="required" })<label>Population</label><br />
                                 @Html.RadioButton("datatype", "Life Expectancy")<label>Life Expectancy</label><br />
                                 @Html.RadioButton("datatype", "Total Area")<label>Total Area</label><br />
                                 @Html.RadioButton("datatype", "Gross Domestic Product (GDP)")<label>Gross Domestic Product</label><br />
                                 <hr />
-                                @Html.RadioButton("map", "Africa")<label>Africa</label><br />
+                                @Html.RadioButton("map", "Africa", new { required = "required" })<label>Africa</label><br />
                                 @Html.RadioButton("map", "Asia")<label>Asia</label><br />
                                 @Html.RadioButton("map", "Oceania")<label>Australia/Oceania</label><br />
                                 @Html.RadioButton("map", "Europe")<label>Europe</label><br />
                                 @Html.RadioButton("map", "North America")<label>North America</label><br />
                                 @Html.RadioButton("map", "South America")<label>South America</label><br />
+                                @Html.RadioButton("map", "Index")<label>World</label><br />
                                 <input type="submit" value="submit" style="width: 180px" />
                                 </div>
                         }

@@ -27,7 +27,7 @@ namespace WorldCensus.Controllers
             
             Country getCountry = (from country in db.Countries
                              where country.Code == dataname
-                             select country).SingleOrDefault();
+                             select country).FirstOrDefault();
 
             return PartialView(getCountry);
         }

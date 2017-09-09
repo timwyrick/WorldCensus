@@ -102,18 +102,12 @@
 
             $.ajax({
                 type: "GET",
-                url: "/Home/Modal",
+                url: "/Countries/Index",
                 contentType: "application/json; charset=utf-8",
-                // data: { "Id": id },
-                //datatype: "json",
-                //modal: true,
                 data: { 'dataname': code },
                 success: function (data) {
-                    //  debugger;
                     $('#myModalContent').html(data);
-                    // $('#myModal').modal(options);
                     $('#myModal').modal('show');
-
                 },
                 error: function () {
                     alert("Dynamic content load failed.");
