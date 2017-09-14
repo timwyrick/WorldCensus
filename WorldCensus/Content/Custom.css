@@ -18,25 +18,30 @@
     width: 190px;
     margin-left: 10px;
 }
+
+#form-container > select{
+    width: 180px;
+    margin-bottom: 5px;
+}
 @media screen and (min-width: 768px) {
 
     .modal-dialog {
         width: 70%;
         min-width: 400px;
     }
-
-} 
+}
 
 .img-responsive {
     width: 100%;
     margin-top: 10px;
     margin-bottom: 5px;
+    border: 1px solid black;
 }
 
-table{
+table {
     margin-bottom: 20px;
 }
 
-h4{
+h4 {
     margin-bottom: 5px;
 }

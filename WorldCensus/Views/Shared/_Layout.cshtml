@@ -44,19 +44,25 @@
                         -->
                         @using (Html.BeginForm("GetMap", "Home", FormMethod.Post, new { id = "maptype", @class = "dropdown-menu" }))
                             {
-                                <div id="form-container">   
-                                @Html.RadioButton("datatype", "Population", new { required ="required" })<label>Population</label><br />
-                                @Html.RadioButton("datatype", "Life Expectancy")<label>Life Expectancy</label><br />
-                                @Html.RadioButton("datatype", "Total Area")<label>Total Area</label><br />
-                                @Html.RadioButton("datatype", "Gross Domestic Product (GDP)")<label>Gross Domestic Product</label><br />
-                                <hr />
-                                @Html.RadioButton("map", "Africa", new { required = "required" })<label>Africa</label><br />
-                                @Html.RadioButton("map", "Asia")<label>Asia</label><br />
-                                @Html.RadioButton("map", "Oceania")<label>Australia/Oceania</label><br />
-                                @Html.RadioButton("map", "Europe")<label>Europe</label><br />
-                                @Html.RadioButton("map", "North America")<label>North America</label><br />
-                                @Html.RadioButton("map", "South America")<label>South America</label><br />
-                                @Html.RadioButton("map", "Index")<label>World</label><br />
+                                <div id="form-container"> 
+
+                                    <select name="map" required>
+                                        <option value="Africa">Africa</option>
+                                        <option value="Asia">Asia</option>
+                                        <option value="Europe">Europe</option>
+                                        <option value="Oceania">Oceania</option>
+                                        <option value="North America">North America</option>
+                                        <option value="South America">South America</option>
+                                        <option value="Index">World</option>
+                                    </select>
+
+                                    <select name="datatype" required>
+                                        <option value="Population">Population</option>
+                                        <option value="Life Expectancy">Life Expectancy</option>
+                                        <option value="Total Area">Total Area</option>
+                                        <option value="Gross Domestic Product (GDP)">Gross Domestic Product</option>
+                                    </select>
+                                    
                                 <input type="submit" value="submit" style="width: 180px" />
                                 </div>
                         }
